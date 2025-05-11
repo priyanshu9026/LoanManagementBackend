@@ -7,7 +7,10 @@ import { applyLoan, getLoans } from './controllers/LoanController.js';
 dotenv.config();  // Load .env variables
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://your-netlify-app.netlify.app'],
+  credentials: true
+}));
 app.use(express.json());
 
 // MongoDB connection
