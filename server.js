@@ -7,18 +7,20 @@ import { applyLoan, getLoans } from './controllers/LoanController.js';
 dotenv.config();  // Load .env variables
 
 const app = express();
-app.use(cors({
-  origin: function (origin, callback) {
-    const allowedOrigins = ['http://localhost:5173', 'https://loanmanagementd.netlify.app'];
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-}));
-app.use(express.json());
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     const allowedOrigins = ['http://localhost:5173', 'https://loanmanagementd.netlify.app'];
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true
+// }));
+// app.use(express.json());
+app.use(cors({ origin: ['http://localhost:5173', 'https://loanmanagementd.netlify.app'] }));
+app.use(express.json()); // Updated to include CORS with specific origin
 
 // MongoDB connection
 connectDB();
