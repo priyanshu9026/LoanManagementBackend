@@ -1,17 +1,13 @@
 import mongoose from 'mongoose';
 
 const loanSchema = new mongoose.Schema({
-  fullName: String,
-  amount: Number,
-  tenure: Number,
-  employmentStatus: String,
-  reason: String,
-  address: String,
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  fullName: { type: String, required: true },
+  amountNeeded: { type: Number, required: true },
+  loanTenure: { type: Number, required: true },
+  reasonForLoan: { type: String, required: true },
+  employmentStatus: { type: String },
+  employmentAddress: { type: String },
+  status: { type: String, enum: ['Pending', 'Approved', 'Rejected'], default: 'Pending' }
+}, { timestamps: true });
 
-const Loan = mongoose.model('Loan', loanSchema);
-export default Loan;
+export default mongoose.model('Loan', loanSchema);

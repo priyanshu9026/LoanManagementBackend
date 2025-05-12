@@ -8,7 +8,14 @@ dotenv.config();  // Load .env variables
 
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://your-netlify-app.netlify.app'],
+  origin: function (origin, callback) {
+    const allowedOrigins = ['http://localhost:5173', 'https://loanmanagementd.netlify.app'];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());
