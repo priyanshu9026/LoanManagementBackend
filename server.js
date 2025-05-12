@@ -19,7 +19,9 @@ const app = express();
 //   credentials: true
 // }));
 // app.use(express.json());
-app.use(cors({ origin: ['http://localhost:5173', 'https://loanmanagementd.netlify.app'] }));
+app.use(cors({ origin: ['http://localhost:5173', 'https://loanmanagementd.netlify.app'],
+  credentials: true
+ }));
 app.use(express.json()); // Updated to include CORS with specific origin
 
 // MongoDB connection
